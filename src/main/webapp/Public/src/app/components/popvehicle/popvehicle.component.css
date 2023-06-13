@@ -1,0 +1,28 @@
+ul{
+    list-style-type: none;
+}
+/* .full{
+    height: 90% !important;
+    width: 90% !important;
+} */
+/* .clbtn{
+    display: flex;
+    align-items: end;
+} */
+/* ::ng-deep .mat-dialog-actions {
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  } */
+  .buttn{
+    border-radius: 25px;
+}
+td{
+    text-align: center;
+}
+.colo{
+    background-color: #2caf94;
+    color: white;
+}

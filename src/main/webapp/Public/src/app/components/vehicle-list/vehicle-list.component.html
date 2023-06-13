@@ -1,0 +1,66 @@
+<div class="row mar">
+  <div class="col-4">
+    <br>
+    <h2>Vehicle List No</h2>
+    <br>
+  </div>
+  <div class="col-3">
+    <br>
+    <button class="btn  buttn" type="submit"><a
+    routerLink="../createvehicle"
+    routerLinkActive="active"
+    class="nav-link"
+  >
+    Add New Vehicle</a>
+    </button>
+    
+  </div>
+      </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+      <th>Registered No</th>
+      <th>Model</th>
+      <th>Max. Carrying Weight (KG)</th>
+      <th>Max. Carrying Volume (L)</th>
+      <th>Status</th>
+      <th>Actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vehicle of vehicles">
+
+      <td>{{ vehicle.vehicleNo }}</td>
+      <td>{{ vehicle.model }}</td>
+      <td>{{ vehicle.maxWeight }}</td>
+      <td>{{ vehicle.maxVol }}</td>
+      <td>{{vehicle.status}}</td>
+
+      <td>
+
+        <button (click)="updateVehicle(vehicle.vehicleNo)" class="btn  buttn">
+          update
+        </button>
+
+        <button
+          (click)="deleteVehicle(vehicle.vehicleNo)"
+          class="btn buttn-danger"
+          style="margin-left: 10px"
+        >
+          Delete
+        </button>
+
+        <button
+          (click)="vehicleDetails(vehicle.vehicleNo)"
+          class="btn  buttn"
+          style="margin-left: 10px"
+        >
+          View
+        </button>
+        
+      </td>
+    </tr>
+  </tbody>
+</table>

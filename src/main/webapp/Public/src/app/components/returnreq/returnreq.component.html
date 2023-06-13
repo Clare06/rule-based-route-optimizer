@@ -1,0 +1,52 @@
+<div style="padding-top: 10px;" class="container-fluid">
+    <div class="row">
+       <h2 style="margin-bottom: 10px;" align="center">Return Requests</h2>
+
+       <table class="table table-responsive-lg" >
+        <thead>
+        <tr>
+          <th scope="col">User Name</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Return Quantity</th>
+          <th scope="col">Volume</th>
+          <th scope="col">Weight</th>
+          <th scope="col">Branch </th>
+          <th scope="col"></th>
+          <!-- <th scope="col">Product</th> -->
+          <!-- jfd,fd *ngFor="let item of getOrder;" -->  
+        </tr>
+        </thead>
+        <tbody>
+        <tr scope="row" *ngFor="let item of getReturn;" >
+          <td>{{ item.user.name }}</td>
+          <td>{{ item.backhauling.product.productName }}</td>
+          <td>{{ item.backhauling.retQuantity }}</td>
+          <td>{{ item.backhauling.tVolume }}</td>
+          <td>{{ item.backhauling.tWeight }}</td>
+          <td>{{ item.user.branch }}</td>
+          <!-- <td>{{ item.obId }}</td> -->
+          <td *ngIf="active(item.obId)" ><button class="btn btn-outline-primary" (click)="add(item.obId)" >Accept</button></td>
+          <td *ngIf="active(item.obId)==false" ><button class="btn btn-outline-danger buttn" (click)="add(item.obId)" >X</button></td>
+
+          <!-- <td> 
+            <select (click)="productDropdown(item.oid)" *ngFor="let pro of getItem;" >
+              
+                  <option [disabled]="true" style="text-decoration: none;">{{pro.product.productName}} -- {{pro.orderedQuantity}}</option>
+  
+            </select>
+           </td> -->
+        </tr>
+    </tbody>
+      </table>
+      <div class="fluid-container ">
+        <div class="row">
+            <div class="col col-9"></div>
+            <div class="col col-2 d-flex justify-content-end"><button class="btn btn-success" (click)="onSubmit()">submit</button></div>
+            <div class="col col-1 d-flex justify-content-center"><button class="btn btn-warning" (click)="clear()">clear</button></div>
+            
+        </div>
+      </div>
+     
+      
+    </div>
+</div>

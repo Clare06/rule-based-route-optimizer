@@ -1,0 +1,65 @@
+<h1 mat-dialog-title><b> Vehicle Assign</b> </h1>
+<mat-dialog-content class="mat-typography ">
+    <!-- {{curOrder}} {{curReq}} -->
+<div class="container-fluid>">
+  <div class="row">
+    <div class="col col-3 col-sm-3">
+      <h3 mat-dialog-title><b>Order Summary</b></h3>
+      <ul *ngFor="let item of orderDetail;">
+        <li>Oid - {{item.oid}}</li>
+        <li>Name - {{item.user.name}}</li>
+        <li>Volume - {{item.volume}}</li>
+        <li>Weight - {{item.weight}}</li>
+        <li>Delivery - {{item.deliveryAddress}}</li>
+      </ul>
+    </div>
+    <div class="col col-3 col-sm-3">
+      <h3 mat-dialog-title><b>Return Summary</b></h3>
+      <ul *ngFor="let obj of returnDetail;">
+        <li>Obid - {{obj.obId}}</li>
+        <li>Name - {{obj.user.name}}</li>
+        <li>Branch - {{obj.user.branch}}</li>
+        <li>Product - {{obj.backhauling.product.productName}}</li>
+        <li>Weight - {{obj.backhauling.tWeight}}</li>
+        <li>Volume - {{obj.backhauling.tVolume}}</li>
+        
+      </ul>
+      <p>Total weight - {{capacity.maxWeight}}</p>
+      <p>Total volume - {{capacity.maxVol}}</p>
+    </div>
+    <div class="col col-6 col-sm-6">
+      <!-- <ul *ngFor="let ob of vehicleDetail;">
+        <li>{{ob.vehicleNo}}</li>
+      </ul> -->
+      <h3 mat-dialog-title><b>Available Vehicles</b></h3> 
+      <table class="table table-responsive-lg" >
+        <thead>
+        <tr>
+          <th scope="col">Vehicle ID</th>
+          <th scope="col">Model</th>
+          <th scope="col">Max Vol</th>
+          <th scope="col">Max Weight</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+       <tbody>
+          <tr scope="row" *ngFor="let ob of vehicleDetail;" >
+            <td>{{ ob.vehicleNo }}</td>
+            <td>{{ ob.model }}</td>
+            <td>{{ ob.maxVol }}</td>
+            <td>{{ ob.maxWeight }}</td>
+            <td *ngIf="selectedVehicle!=ob.vehicleNo"><button class="btn btn-sm btn-outline-primary" (click)="assign(ob.vehicleNo)" >Assign</button></td>
+            <td *ngIf="selectedVehicle==ob.vehicleNo"><button class="btn btn-sm btn-outline-danger buttn" (click)="clear()">X</button></td>
+
+          </tr>
+        </tbody>
+      </table> 
+    </div>
+  </div>
+</div>
+   
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-outline-info" mat-button mat-dialog-close>Close</button>
+  <button class="colo" *ngIf="selectedVehicle != null" mat-button [mat-dialog-close]="true" (click)="Submit()">Submit</button>
+</mat-dialog-actions>

@@ -1,0 +1,33 @@
+<div style="padding-top: 60px;" class="container-fluid">
+    <div class="row">
+
+    <h2 style="margin-bottom: 10px;" align="center">Order History</h2>
+    <table id="myTable" class="table table-hover table-responsive-lg" >
+      <thead>
+        <tr>
+          <th scope="col">Order ID</th>
+          <th scope="col">Products</th>
+          <th scope="col">Volume</th>
+          <th scope="col">Weight</th>
+          <th scope="col">Date Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" *ngFor="let order of myorders; let i = index">
+          <td>{{order.oid}}</td>
+          <td>
+            <ul style="list-style-type:none">
+              <li *ngFor="let product of order.products">
+                {{product}}
+              </li>
+            </ul>
+          </td>
+          <td>{{order.volume}}</td>
+          <td>{{order.weight}}</td>
+          <td>{{order.dateTime}}</td>
+        </tr>
+      </tbody>
+  </table>
+
+    </div>
+</div>

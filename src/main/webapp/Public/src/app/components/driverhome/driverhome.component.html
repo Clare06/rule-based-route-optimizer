@@ -1,0 +1,63 @@
+<br />
+  <h2 class="head-dd">&emsp;Driver Dashboard</h2>
+  <br />
+  <!-- cards-->
+  <div class="row-1">
+    <div class="column-1">
+      <div class="map-card-header">
+        <img src="/assets/img/route-map.png" alt="mapimg" style="width: 100%" />
+        <div class="container">
+          <br />
+          <h4><b>View Route Map</b></h4>
+          <br />
+        </div>
+      </div>
+    </div>
+
+    <div class="column-2">
+      <div class="map-card2" onclick="showorder()">
+        <img src="/assets/img/delivery.jpg" alt="mapimg" style="width: 100%" />
+        <div class="container">
+          <br />
+          <h4><b>View Orders</b></h4>
+          <br />
+        </div>
+      </div>
+    </div>
+
+    <div class="column-3">
+      <div class="map-card3">
+        <div class="container">
+          <br />
+          <h4><i class="bi bi-bell"></i><b>&emsp;Notifications</b></h4>
+          <hr />
+          <div
+            *ngFor="let item of driverDelivery"
+            class="notifications__item"
+            (click)="openDialog(item)"
+          >
+            <div class="notifications_item_avatar">
+              <img src="/assets/img/ordericon.png" />
+            </div>
+
+            <div class="notifications_item_content">
+              <span class="notifications_item_title"
+                >Order ID - {{ item.order.oid }}</span
+              >
+              <span class="notifications_item_message"
+                >Delivery date - {{ item.order.dateTime }}</span
+              >
+            </div>
+
+            <div>
+              <div class="notifications_item_option archive js-option">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>

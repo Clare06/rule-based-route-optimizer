@@ -1,0 +1,114 @@
+.navActive{
+    background-color: #2caf94;
+    /* color: rgb(5, 5, 5); */
+    text-decoration: none;
+
+
+}
+.navActive a{
+    color: #ffffff !important;
+
+
+}
+.navActive:hover{
+    background-color: #2caf94 !important;
+}
+
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+    /* width: 100%; */
+    /* display: block; */
+
+
+  }
+a{
+    /* width: 100%; */
+    /* display: block; */
+   cursor: pointer !important;
+    /* padding-top: 30px; */
+    /* background-color: aqua; */
+   padding: 10px;
+    padding-right: 50px;
+    /* padding-left: 0px; */
+
+}
+li:last-child{
+    position: absolute;
+    bottom:5vh;
+    color: rgb(255, 255, 255);
+    font-weight: 500 !important;
+    font-size: 25px !important;
+    /* background-color: white; */
+}
+li:last-child a {
+color: rgb(250, 250, 250) !important;
+font-weight: 500 !important;
+font-size: 25px !important;
+}
+ul.gallery{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    float: left;
+    clear: both; 
+    list-style: none !important; 
+    /* list-style-type: none; */
+    height: 100%;
+    /* position: relative; */
+   }
+   
+   ul.gallery li {
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem !important;
+    float: left;
+    /* -moz-box-sizing: border-box;
+    box-sizing: border-box; */
+    text-align: center;
+    list-style: none !important;
+    display: block;
+    height: 50px;
+    text-align: start;
+    padding: 10px;
+    border-radius:10px;
+    font-size: 20px;
+    color: #fff ;
+   }
+   a:link{
+    text-decoration: none;
+   }
+   
+   
+   ul.gallery li a {
+     width: 100%;
+     /* display: block; */
+     overflow: hidden;
+     outline: none;
+     color: white;
+     font-size: 20px;
+     font-weight: 450;
+     letter-spacing: 0.1rem;
+     padding-left: 1rem;
+   }
+   li:hover{
+    background-color: #ffffff35;
+   }
+   li:last-child:hover{
+    background-color: #ffffff00;
+    color: #ffffff85;
+   }
+   li:last-child:hover a{
+    color: #ffffff85 !important ;
+   }
+/* #ulid{
+    list-style: none;
+    width: 100%;
+    
+}
+#ulid li{
+    width: 100%;
+    display: block;
+} */

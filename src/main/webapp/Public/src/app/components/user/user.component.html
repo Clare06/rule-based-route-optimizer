@@ -1,0 +1,111 @@
+<div class="container-fluid mtop">
+    <div>
+        <button class="btn btn-primary bton" *ngIf="create" (click)="triger()">Users List</button>
+        <button class="btn btn-primary bton" *ngIf="!create" (click)="triger()">Create User</button>
+
+    </div>
+    <div class="top" *ngIf="create">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="name" class="form-control" id="name" formControlName="name" placeholder="Enter your name">
+        <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+            <div  *ngIf="userForm.get('name')?.errors">
+                <label class="text-danger">*Name required</label>
+            </div>
+          </div>             
+    </div>
+    <!-- Email -->
+<div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+        <div  *ngIf="userForm.get('email')?.errors">
+            <label class="text-danger">*Email required, Check whther it's valid email</label>
+        </div>
+    </div>            
+</div>
+  
+    
+  <!-- Password -->
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+    <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+      <div *ngIf="userForm.get('password')?.errors">
+        <label class="text-danger">*Password is required</label>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Role -->
+  <div class="form-group">
+    <label for="role">Role:</label>
+    <select class="form-control" id="role" formControlName="role">
+      <option value="" disabled selected>Select role</option>
+      <option value="admin">Admin</option>
+      <option value="outletuser">User</option>
+      <option value="warehouse">Warehouse</option>
+      <option value="driver">Driver</option>
+    </select>
+    <div *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched">
+      <div *ngIf="userForm.get('role')?.errors">
+        <label class="text-danger">*Role is required</label>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Branch -->
+  <div class="form-group">
+    <label for="branch">Branch:</label>
+    <input type="text" class="form-control" id="branch" formControlName="branch" placeholder="Enter your branch">
+    <div *ngIf="userForm.get('branch')?.invalid && userForm.get('branch')?.touched">
+      <div *ngIf="userForm.get('branch')?.errors">
+        <label class="text-danger">*Branch is required</label>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Phone -->
+  <div class="form-group">
+    <label for="phone">Phone:</label>
+    <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Enter your phone number">
+    <div *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched">
+      <div *ngIf="userForm.get('phone')?.errors">
+        <label class="text-danger">*Phone number is required</label>
+      </div>
+    </div>
+  </div>
+  
+  
+    <button type="submit" class="btn btn-primary bton">Submit</button>
+  </form>
+</div>
+<div *ngIf="!create" class="top">
+    <table class="table table-responsive-lg" >
+        <thead>
+            <tr class="color">
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Role</th>
+                <th scope="col">Phone</th>
+                <!-- <th scope="col">Delet</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of userObj;">
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.branch}}</td>
+                <td>{{item.role}}</td>
+                <td>{{item.phone}}</td>
+                <td><button class="btn btn-danger" (click)="delete(item.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>

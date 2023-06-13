@@ -1,0 +1,44 @@
+.divNav{
+    position: fixed;
+    z-index: 1;
+    width: 19%;
+    /* box-shadow: -100px 21px 9px -14px rgba(0,0,0,0.2),0px 10px 15px -3px rgba(255,255,255,0.3); */
+    border-radius: 0.5rem;
+    
+    /* background-color: #E97A5C; */
+    /* background: #6441A5; 
+    background: -webkit-linear-gradient(to right, #2a0845, #6441A5); 
+    background: linear-gradient(to right, #2a0845, #6441A5);  */
+    /*background: #f2709c;
+    background: -webkit-linear-gradient(to bottom, #ff9472, #f2709c);  
+    background: linear-gradient(to bottom, #ff9472, #f2709c);  */
+    background: linear-gradient(to bottom, #161D25, #465b74);
+    /* background-color: #a16574; */
+   
+    min-height:98.5vh;
+
+    margin-left: 2px;
+}
+.divBody{
+    position: absolute;
+    z-index: 2;
+    width: 82%;
+    margin-left: 17%;
+    /* box-shadow: 30px 30px 9px -22px rgba(255,255,255,0.3); */
+    border-radius: 0.5rem;
+    background-color: white;
+    min-height:98vh;
+
+
+
+
+}
+.profile{
+position:absolute;
+top: 2vh;
+right: 3%;
+z-index: 3;
+height: 9vh;
+width: 18%;
+/* background-color: aqua; */
+}

@@ -1,0 +1,39 @@
+<form [formGroup]="productForm">
+<div style="margin: 10px; width: 400px;">
+
+<h4 style="margin-bottom: 20px;">Add Product</h4>
+
+<div class="form-group">
+<mat-form-field class="formfield" appearance="outline" color="primary">
+    <mat-label>Product name</mat-label>
+    <input class="form-control" formControlName="name" matInput name="name">
+</mat-form-field>
+</div>
+
+<div class="form-group">
+<mat-form-field class="formfield" appearance="outline" color="primary">
+    <mat-label>Weight per unit</mat-label>
+    <input class="form-control" formControlName="weight" type="number" matInput name="weight">
+</mat-form-field>
+</div>
+
+<div class="form-group">
+<mat-form-field class="formfield" appearance="outline" color="primary">
+    <mat-label>Volume per unit</mat-label>
+    <input class="form-control" formControlName="volume" type="number" matInput name="volume">
+</mat-form-field>
+</div>
+
+<div class="form-group">
+<mat-form-field class="formfield" appearance="outline" color="primary">
+    <mat-label>Quantity</mat-label>
+    <input class="form-control" formControlName="quantity" type="number" matInput name="quantity">
+</mat-form-field>
+</div>
+
+<div style="display: flex; justify-content: flex-end;">
+<button class="btn-success" mat-raised-button (click)="onClick()">Add</button>
+</div>
+
+</div>
+</form>

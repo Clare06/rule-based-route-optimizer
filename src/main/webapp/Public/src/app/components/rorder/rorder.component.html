@@ -1,0 +1,66 @@
+
+
+<div style="padding-top: 10px;" class="container-fluid">
+    <div class="row">
+        <!-- hey
+       <ul>
+        <li *ngFor="let getOrder of data">
+            {{getOrder.weight}}
+        </li>
+       </ul>  -->
+
+       <h2 style="margin-bottom: 10px;" align="center">Received Orders</h2>
+       <table class="table table-hover table-responsive-lg" >
+        <thead>
+        <tr>
+          <th scope="col">Order ID</th>
+          <th scope="col">User Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Volume</th>
+          <th scope="col">Weight</th>
+          <th scope="col">Date Time</th>
+          <th scope="col">Delivery Address</th>
+          <!-- <th scope="col">Product</th> -->
+          <!-- jfd,fd -->
+          
+        </tr>
+        </thead>
+        <tbody>
+        <tr scope="row" *ngFor="let item of getOrder; let i = index;" (click)="selectOrder(item.oid)" [ngClass]="{ractive: check(item.oid) }">
+          <td>{{ item.oid }}</td>
+          <td>{{ item.user.name }}</td>
+          <td>{{ item.user.email }}</td>
+          <td>{{ item.volume }}</td>
+          <td>{{ item.weight }}</td>
+          <td>{{ item.dateTime }}</td>
+          <td>{{ item.deliveryAddress }}</td>
+          <!-- <td> 
+            <select (click)="productDropdown(item.oid)" *ngFor="let pro of getItem;" >
+              
+                  <option [disabled]="true" style="text-decoration: none;">{{pro.product.productName}} -- {{pro.orderedQuantity}}</option>
+  
+            </select>
+           </td> -->
+        </tr>
+    </tbody>
+      </table>
+
+    </div>
+</div>
+<div class="container-fluid" style="padding-top: 20px;">
+    <div class="row">
+        <div class="col col-9">
+
+        </div>
+        <div class="col col-2 d-flex justify-content-end ">
+            <button (click)="openDialog()" class="btn btn-success btn-lg button submit" [disabled]="isDisabled()">Submit</button>
+        </div>
+        <div class="col col-1 d-flex justify-content-start">
+            <button class="btn btn-lg button cancel" (click)="onCancel()" [disabled]="isDisabled()">X</button>
+        </div>
+        <!-- <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog> -->
+
+        <!-- <button (click)="openDialog()">Open Dialog</button> -->
+        
+    </div>
+</div>

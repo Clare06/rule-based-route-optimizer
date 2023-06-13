@@ -1,0 +1,46 @@
+<!-- <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <a href="#">Brand</a></div></div>
+      <li><a [ngClass]="{navActive:isHome()}" routerLink="/home" >Home</a></li>
+      <li><a routerLink="settings"  [ngClass]="{navActive:isSettings()}">Settings</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#team">Team</a></li>
+      <li class="dropdown">
+      <a href="#works" class="dropdown-toggle"  data-toggle="dropdown">Works <span class="caret"></span></a>
+    <ul class="dropdown-menu animated fadeInLeft" role="menu">
+     <div class="dropdown-header">Dropdown heading</div>
+     <li><a href="#pictures">Pictures</a></li>
+     <li><a href="#videos">Videeos</a></li>
+     <li><a href="#books">Books</a></li>
+     <li><a href="#art">Art</a></li>
+     <li><a href="#awards">Awards</a></li>
+     </ul>
+     </li>
+     <li><a href="#services">Services</a></li>
+     <li><a href="#contact">Contact</a></li>
+     <li><a href="#followme">Follow me</a></li>
+     </ul>
+ </nav> -->
+<div class="container" style="margin-top: 10vh;" >
+<div class="row">
+
+  <div style="height: 85vh;position: absolute;">
+     <ul class="no-bullets gallery" id="ulid">
+          <li  [ngClass]="{navActive:isHome()}"><i class="bi bi-house-door-fill"></i><a routerLink="home">Home</a></li>
+          <li  [ngClass]="{navActive:isAdmin()}" *ngIf="!isNotAdmin()"><i class="bi bi-people"></i><a routerLink="user">Users</a></li>
+          <li  [ngClass]="{navActive:isOrder()}" *ngIf="isNotAdmin() && isNotDriver()" ><i class="bi bi-box-fill"></i><a routerLink="order">Order</a></li>
+          <li  [ngClass]="{navActive:isRoute()}" *ngIf="isNotAdmin()" ><i class="bi bi-compass"></i><a routerLink="route">Route</a></li>
+          <li  [ngClass]="{navActive:isStock()}" *ngIf="role=='warehouse'"><i class="bi bi-hourglass-split"></i><a routerLink="stock">Stock</a></li>
+          <li  [ngClass]="{navActive:isHistory()}" *ngIf="role=='outletuser'" ><i class="bi bi-hourglass-split"></i><a routerLink="history">Order History</a></li>
+          <li  [ngClass]="{navActive:isVehicle()}" *ngIf="role=='warehouse'"><i class="bi bi-truck-front-fill"></i><a routerLink="vehicle">Vehicle</a></li> 
+          <li  [ngClass]="{navActive:isSettings()}"><i class="bi bi-gear-fill"></i><a routerLink="settings">Settings</a></li> 
+          <li ><i class="bi bi-box-arrow-left"></i><a class="a" (click)="logout()">Log out</a></li> 
+          
+     </ul>
+  </div>
+
+</div>
+
+</div>

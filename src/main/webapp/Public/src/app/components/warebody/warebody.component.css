@@ -1,0 +1,24 @@
+.marg {
+
+    margin-top: 80px;
+
+}
+.free {
+    color: rgb(10, 148, 54);
+    font-size: large;
+    text-transform: uppercase;
+}
+.active {
+    color: red !important;
+    font-size: large;
+    text-transform: uppercase;
+}
+.marg1{
+    margin-top: 30px;
+}
+.margle{
+    margin-left: 10px;
+}
+h4{
+    margin-bottom: 1px;
+}

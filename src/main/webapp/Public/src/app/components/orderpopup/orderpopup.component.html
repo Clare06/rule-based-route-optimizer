@@ -1,0 +1,50 @@
+<mat-card class="orderpop" >
+    <mat-card-header class="popupform">
+    <h2>Order Details</h2>
+</mat-card-header>
+<hr>
+<mat-card-content>
+    <table >
+        <tr>
+            <td> <b>Order ID - {{data.order.oid}} </b></td>
+            <td [width]="60"></td>
+        </tr>
+        <tr>
+            <td> Customer Name</td>
+            <td [width]="30">-</td>
+            <td>{{data.order.user.name}}</td>
+        </tr>
+        <tr>
+            <td>Delivery Address</td>
+            <td [width]="30"></td>
+            <td>{{data.order.deliveryAddress}}</td>
+        </tr>
+        <tr>
+            <td>Weight</td>
+            <td [width]="30">-</td>
+            <td>{{data.order.weight}}</td>
+        </tr>
+        <tr>
+            <td>Volume</td>
+            <td [width]="30">-</td>
+            <td>{{data.order.volume}}</td>
+        </tr>
+        <tr>
+            <td>Delivery Date</td>
+            <td [width]="30">-</td>
+            <td>{{data.order.dateTime | date:'fullDate'}}</td>
+        </tr>
+        <tr>
+            <td>Time-window</td>
+            <td [width]="30">-</td>
+            <td>{{data.order.dateTime | date:'shortTime'}}</td>
+        </tr>
+        <hr>
+    </table>
+</mat-card-content>
+<mat-card-actions align="end">
+    <button mat-raised-button color="primary" >Start Delivery</button>
+    &nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="warn" (click)="closeDialog()">Close</button>
+</mat-card-actions>
+</mat-card>

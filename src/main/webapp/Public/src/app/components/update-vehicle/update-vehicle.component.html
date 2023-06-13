@@ -1,0 +1,67 @@
+
+  <br>
+  
+    <div class="row mar">
+      <div class="col-4">
+    <h3>Update Vehicle</h3>
+    <br>
+    </div>
+    <div class="col-3">
+      <button class="btn buttn" type="submit"> <a routerLink="../../vehicle" routerLinkActive="active" class="nav-link"
+        >Back to the Vehicle List</a
+      > </button>
+    <br>
+    </div>
+    </div>
+    
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group" hidden>
+        <!-- <label><b>Registered No</b></label> -->
+        <input
+          type="text"
+          class="form-control"
+          id="vehicleNo"
+          [(ngModel)]="vehicle.vehicleNo"
+          name="vehicleNo"
+          hidden
+        />
+      </div>
+  
+      
+  
+      <div class="form-group">
+        <label><th>Max. Carrying Weight (KG)</th></label>
+        <input
+          type="text"
+          (keypress)="OnlyNumbersAllowed($event)"
+          class="form-control"
+          id="maxWeight"
+          [(ngModel)]="vehicle.maxWeight"
+          name="maxWeight"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label><th>Max. Carrying Volume (L)</th></label>
+        <input
+          type="text"
+          (keypress)="OnlyNumbersAllowed($event)"
+          class="form-control"
+          id="maxVol"
+          [(ngModel)]="vehicle.maxVol"
+          name="maxVol"
+        />
+      </div>
+      <div class="form-group">
+        <label><b>DriverID</b></label>
+        <input
+          type="text"
+          class="form-control"
+          id="model"
+          [(ngModel)]="vehicle.model"
+          name="model"
+        />
+      </div>
+      <button class="btn buttn btn-lg button submit mar" type="submit">Submit</button>
+    </form>
+  

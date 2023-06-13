@@ -1,0 +1,73 @@
+
+    <h3 style="margin-top: 20px;">Dashboard</h3>
+    <div>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+    
+          <!-- Icon Cards-->
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                <div class="inforide">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridetwo">
+                        <i class="fas fa-building fa-2x text-gray-300"></i>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                        <h4>Total Branches</h4>
+                        <h2>{{b_count}}</h2>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                <div class="inforide">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 rideone">
+                        <i class="fas fa-truck fa-2x text-gray-300"></i>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                        <h4>Total Vehicles</h4>
+                        <h2>{{v_count}}</h2>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
+                <div class="inforide">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridethree">
+                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                        <h4>Pending Orders</h4>
+                        <h2>{{o_count}}</h2>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div>
+            <ngx-charts-bar-vertical 
+            [view]="[1150,500]"
+            [results]="saleData"
+            [xAxisLabel]="'Product '"
+            [legendTitle]="'Product Sale Chart'"
+            [yAxisLabel]="'Available Quantity'"
+            [legend]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [customColors]="color"
+            [xAxis]="false"
+            [yAxis]="true"
+            [gradient]="false"
+            [barPadding]="0.5">
+          </ngx-charts-bar-vertical>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.mtop{
+    margin-top: 100px;
+}
+.color{
+    /* color:white ; */
+}
+th{
+    background-color: #344457;
+    text-align: center;
+    color:#fff;
+}
+td{
+    text-align: center;
+}
+h4{
+    text-align: center;
+}
+table{
+    margin-top: 20px;
+    background-color: rgb(224, 224, 224);
+    border-color: rgb(255, 255, 255);
+}

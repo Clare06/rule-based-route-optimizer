@@ -1,0 +1,171 @@
+<section class="vh-100">
+    <div  class="container-fluid h-custom" style="padding-bottom: 100px;">
+      <div class="row d-flex justify-content-center align-items-center h-100" >
+        <div class="col-md-9 col-lg-6 col-xl-5" >
+            <h1 align="center" style="padding-top: 100px;">Ruled-Based <br> Route Optimizer</h1>
+         <img src="../../../assets/img/login_img.png"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div *ngIf="!forPass && !otp && !newPass" class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <h3>Log in to your account</h3>
+          </div>
+          <p style="color: #8692A6;">If you are already a user you can login with your email address and password.</p>
+          <hr>
+          <br>
+
+          <form (ngSubmit)="authenticate(myform.value)" #myform="ngForm" >
+        
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3">Email address</label>
+              <input type="email" id="form3Example3" ngModel name="email" class="form-control form-control-lg"
+                placeholder="Enter a valid email address" />         
+            </div>
+            <div class="form-outline mb-3">
+              <label class="form-label" for="form3Example4">Password</label>
+              <input ngModel name="password" type="password" id="form3Example4" class="form-control form-control-lg"
+                placeholder="Enter password" />
+              
+            </div>
+  
+            <div class="d-flex justify-content-between align-items-center">
+        
+              
+              <a (click)="isForPass()" class="text-body">Forgot password?</a>
+            </div>
+  
+            <div class="text-center text-lg-start mt-4 pt-2" >
+              <button type="submit" class="btn custom-button btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;" >Login</button>
+             
+            </div>
+  
+          </form>
+         <p *ngIf="message!=''" style="margin-top: 20px;" class="alert alert-danger"> {{message}}</p>
+        </div>
+        <!-- forgot password -->
+        <!-- forgot password -->
+        <!-- forgot password -->
+
+
+
+
+
+        <div *ngIf="forPass" class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <h3>Enter your email</h3>
+          </div>
+          <!-- <p style="color: #8692A6;">If you are already a user you can login with your email address and password.</p> -->
+          <hr>
+          <br>
+
+          <form (ngSubmit)="forgPass(myform1.value)" #myform1="ngForm" >
+        
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3">Email address</label>
+              <input type="email" id="form3Example3" ngModel name="email" class="form-control form-control-lg"
+                placeholder="Enter a valid email address" />         
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center">
+        
+              
+              <a (click)="isForPass()" class="text-body">Back</a>
+            </div>
+  
+            <div class="text-center text-lg-start mt-4 pt-2" >
+              <button type="submit" class="btn custom-button btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;" >Confirm</button>
+             
+            </div>
+  
+          </form>
+         <p *ngIf="otpmessage!=null" style="margin-top: 20px;" class="alert alert-danger"> {{otpmessage}}</p>
+        </div>
+        <!-- otp -->
+         <!-- otp -->
+          <!-- otp -->
+
+
+
+
+
+
+        <div *ngIf="otp" class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <h3>Enter OTP that sent to your email</h3>
+          </div>
+          <!-- <p style="color: #8692A6;">If you are already a user you can login with your email address and password.</p> -->
+          <hr>
+          <br>
+
+          <form (ngSubmit)="otpSend(myform2.value)" #myform2="ngForm" >
+        
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3">OTP</label>
+              <input type="email" id="form3Example3" ngModel name="otp" class="form-control form-control-lg"
+                placeholder="Enter otp here" />         
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center">
+        
+              
+              <!-- <a (click)="isForPass()" class="text-body">Back</a> -->
+            </div>
+  
+            <div class="text-center text-lg-start mt-4 pt-2" >
+              <button type="submit" class="btn custom-button btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;" >Confirm</button>
+             
+            </div>
+  
+          </form>
+         <p *ngIf="otpmessage!=null" style="margin-top: 20px;" class="alert alert-danger"> {{otpmessage}}</p>
+        </div>
+        <!-- new password -->
+
+
+        <div *ngIf="newPass" class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <h3>Change Password</h3>
+          </div>
+          <!-- <p style="color: #8692A6;">If you are already a user you can login with your email address and password.</p> -->
+          <hr>
+          <br>
+
+          <form (ngSubmit)="newPassSend(myform3.value)" #myform3="ngForm" >
+        
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3">New Password</label>
+              <input type="password" id="form3Example3" ngModel name="newPass" class="form-control form-control-lg"
+                placeholder="Enter new password" />         
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3">Confirm Password</label>
+              <input type="password" id="form3Example3" ngModel name="confPass" class="form-control form-control-lg"
+                placeholder="Enter confirm password" />         
+            </div>
+              <!-- <input ngModel name="email" hidden="true" value="jgjk"/> -->
+            <div class="d-flex justify-content-between align-items-center">
+        
+              
+              <!-- <a (click)="isForPass()" class="text-body">Back</a> -->
+            </div>
+  
+            <div class="text-center text-lg-start mt-4 pt-2" >
+              <button type="submit" class="btn custom-button btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;" >Confirm</button>
+             
+            </div>
+  
+          </form>
+         <p *ngIf="otpmessage!=null" style="margin-top: 20px;" class="alert alert-danger"> {{otpmessage}}</p>
+        </div>
+      </div>
+    </div>
+    
+  </section>

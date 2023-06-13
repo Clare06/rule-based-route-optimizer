@@ -1,0 +1,29 @@
+<!-- <div class="float-lg-end" >  -->
+<div class="profile container-fluid ">
+
+  
+    <div class="d-flex align-items-center justify-content-around">
+      <img
+        src="{{profImg}}"
+        class="img-fluid"
+        style="height: 40px; width: 40px"
+      />
+      <div class="text-center">
+        <b>{{ loggInUser }}<br /></b>
+        {{ role }}
+      </div>
+    
+  </div>
+</div>
+
+
+<div class="container-fluid" style="margin-top: 5px">
+  <div class="row">
+    <div class="divNav" style="height: 98%">
+      <app-sidebar ></app-sidebar>
+    </div>
+    <div class="divBody">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

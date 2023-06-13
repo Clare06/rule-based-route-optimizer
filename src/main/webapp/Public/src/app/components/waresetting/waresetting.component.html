@@ -1,0 +1,78 @@
+<div class="col margtop">
+
+    <h3>Edit Profile</h3>
+
+
+    <div class="container rounded bg-white mt-5">
+        <div class="row">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" src="{{user.profImgUrl}}" width="90">
+                    <span class="font-weight-bold">{{user.name}}</span>
+                    <span class="text-black-50">{{user.email}}</span>
+                    <span>{{user.branch}}</span>
+                    <button class="btn btn-primary profile-button" (click)="changeDP()"  *ngIf="setprof==false">Change Profile</button>
+                    <form [formGroup]="uploadForm" (ngSubmit)="updateDP()" *ngIf="setprof==true" >
+                        <input class="form-control margtop" type="file" formControlName="file" accept="image/*" (change)="onFileSelect($event)" />
+                        <button class="btn btn-primary profile-button margtop" type="submit" >Upload Profile Picture</button>
+                    </form>
+                </div>
+                   
+                </div>
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <form [formGroup]="myForm" (ngSubmit)="update(myForm.value)">
+                        <div class="row mt-2">
+                            <div class="col-md-12"><input  type="text" class="form-control" formControlName="name" placeholder="name" ></div>  
+                            <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">
+                                <div  *ngIf="myForm.get('name')?.errors">
+                                    <label class="warne">*Name required</label>
+                                </div>
+                              </div>              
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6"><input  type="text" class="form-control" formControlName="email" placeholder="Email" ></div>
+                                <div *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+                                    <div  *ngIf="myForm.get('email')?.errors">
+                                        <label class="warne">*Email required, Check whther it's valid email</label>
+                                    </div>
+                                </div> 
+                            <div class="col-md-6"><input  type="text" class="form-control" formControlName="phone" value="" placeholder="Phone number"></div>
+                            <div *ngIf="myForm.get('phone')?.invalid && myForm.get('phone')?.touched">
+                                <div  *ngIf="myForm.get('phone')?.errors">
+                                    <label class="warne">*Phone number required field , Check whether its begins in +94</label>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12"><input type="text" class="form-control" formControlName="branch" placeholder="branch" ></div>
+                                <div *ngIf="myForm.get('branch')?.invalid && myForm.get('branch')?.touched">
+                                    <div  *ngIf="myForm.get('branch')?.errors">
+                                        <label class="warne">*Branch required</label>
+                                    </div>
+                                </div>        
+                        </div>
+                        <div class="mt-5 text-right"><button class="btn btn-primary profile-button" (click)="show()" *ngIf="set==false">Set Password</button></div>
+                    <div *ngIf="set==true">
+                        <div class="row mt-3">
+                            <div class="col-md-12"><input  type="password" class="form-control" formControlName="currentPassword" placeholder="current password" ></div>            
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6"><input  type="password" class="form-control" formControlName="password" placeholder="new password" ></div>
+                            <div *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
+                                <div  *ngIf="myForm.get('password')?.errors">
+                                    <label class="warne">*New password required, Minimum length required is 8 max(14) and passwor should include one notation and cap letter and small letter and excludes "  &lt; and &gt; </label>
+                                </div>
+                              </div> 
+                            <div class="col-md-6"><input type="password" class="form-control" formControlName="confirmPassword" placeholder="re-enter new password"></div>
+                        </div>
+                    </div>
+                        <div class="mt-5 text-right marbot"><button class="btn btn-primary profile-button" type="submit" type="submit" [disabled]="myForm.invalid && set">Save Profile</button></div>
+                    </form>
+                    <p *ngIf="message!=''" class="text-bg-danger text-center">{{message}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

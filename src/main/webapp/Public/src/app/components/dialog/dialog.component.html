@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Confirm</h1>
+    <div mat-dialog-content>
+        <p class="alert alert-danger">After submiting orders won't be retrieved back!<br>
+          Are you sure you want to proceed?
+          
+        </p>
+        <!-- <p class="alert alert-primary"> Are you sure you want to proceed? </p> -->
+    </div>
+    <div mat-dialog-actions>
+      <button class="btn btn-primary" mat-button [mat-dialog-close]="true">Yes</button>
+      <button class="btn btn-secondary" mat-button [mat-dialog-close]="false" style="margin-left:5px ;">No</button>
+    </div>

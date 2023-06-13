@@ -1,0 +1,80 @@
+<div class="row mar">
+  <div class="col-4">
+    <br />
+    <h2>Add New Vehicle</h2>
+    <br />
+  </div>
+  <div class="col-3">
+    <br />
+    <button class="btn buttn" type="submit">
+      <a routerLink="../vehicle" routerLinkActive="active" class="nav-link"
+        >Back to Vehicle List</a
+      >
+    </button>
+  </div>
+</div>
+
+<form (submit)="onSubmit()">
+  <div class="form-group">
+    <b><label for="vehicleNo">Registered No</label></b>
+    <input
+      type="text"
+      class="form-control"
+      id="vehicleNo"
+      [(ngModel)]="vehicle.vehicleNo"
+      name="vehicleNo"
+      placeholder="Registered Number"
+    />
+  </div>
+
+ 
+
+  <div class="form-group">
+    <b><label for="maxWeight">Max. Carrying Weight (KG)</label></b>
+    <input
+      type="text"
+      (keypress)="OnlyNumbersAllowed($event)"
+      class="form-control"
+      id="maxWeight"
+      [(ngModel)]="vehicle.maxWeight"
+      name="maxWeightt"
+      placeholder="Max. Carrying Weight"
+    />
+  </div>
+
+  <div class="form-group">
+    <b><label for="maxVol">Max. Carrying Volume (L)</label></b>
+    <input
+      type="text"
+      (keypress)="OnlyNumbersAllowed($event)"
+      class="form-control"
+      id="maxVol"
+      [(ngModel)]="vehicle.maxVol"
+      name="maxVol"
+      placeholder="Max. Carrying Volume"
+    />
+  </div>
+  <div class="form-group">
+    <b><label for="model">Model</label></b>
+    <input
+      type="text"
+      class="form-control"
+      id="model"
+      [(ngModel)]="vehicle.model"
+      name="model"
+      placeholder="Model"
+    />
+  </div>
+  <div class="form-group">
+    <b><label for="status">Status</label></b>
+    <select class="form-control" id="status" [(ngModel)]="vehicle.status" name="status">
+      <option value="free" selected>Free</option>
+      <option value="trip">Trip</option>
+    </select>
+    
+  </div>
+  <button class="btn buttn btn-lg button submit mar" type="submit">
+    Submit
+  </button>
+  
+</form>

@@ -1,0 +1,55 @@
+<div class="container-fluid mtop">
+    <div class="row" style="height: 275px;">
+        <div style="display: block">
+            <canvas baseChart
+                    [datasets]="[{ data: ChartData, label: 'Order Counts', backgroundColor: ['#2caf94'] }]"
+                    [labels]="ChartLabels"
+                    [options]="ChartOptions"
+                    chartType="bar">
+            </canvas>
+          </div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <hr>
+        <div class="col-7">
+            <h4>Pending Orders</h4>
+            <table class="table table-responsive-lg" >
+                <thead>
+                    <tr class="color">
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">OID</th>
+                        <th scope="col">Final Timeline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listbyid;">
+                        <td>{{item.product.productName}}</td>
+                        <td>{{item.orderedQuantity}}</td>
+                        <td>{{item.order.oid}}</td>
+                        <td>{{item.order.dateTime}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-5">
+            <h4>Pending Returns</h4>
+            <table class="table table-responsive-lg" >
+                <thead>
+                    <tr class="color">
+                        <th scope="col">Product</th>
+                        <th scope="col">RetQuantity</th>
+                        <th scope="col">Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of retlist;">
+                        <td>{{item.product.productName}}</td>
+                        <td>{{item.retQuantity}}</td>
+                        <td>{{item.reason}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

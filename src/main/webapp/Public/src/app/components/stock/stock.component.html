@@ -1,0 +1,37 @@
+<div style="padding-top: 60px;" class="container-fluid">
+    <div class="row">
+       <h2 style="margin-bottom: 10px;" align="center">Warehouse Stock</h2>
+       <table class="table table-hover table-responsive-lg" >
+        
+        <thead>
+        <tr>
+          <th scope="col">Product ID</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Available Quantity</th>
+          <th scope="col">Volume</th>
+          <th scope="col">Weight</th>
+          <th scope="col"></th>
+          <!-- <th scope="col">Last updated date</th>         -->
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr scope="row" *ngFor="let product of products; let i = index" >
+          <td>{{ product.pid }}</td>
+          <td>{{ product.productName }}</td>
+          <td>{{ product.availableQuantity}}</td>
+          <td>{{ product.volumePerUnit*product.availableQuantity }}</td>
+          <td>{{ product.weightPerUnit*product.availableQuantity }}</td>
+          <!-- <td><button mat-icon-button color="warn" (click)="onDelete(product.pid,i)"><span class="material-icons">delete</span></button></td> -->
+          <!-- <td>{{ product.dateTime }}</td> -->
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- Add product button -->
+      <div class="d-flex justify-content-end">
+        <button style="background-color: #2caf94; border-color: #2caf94; color: white;" mat-raised-button color="primary" (click)="openDialog()">Add a new product</button>
+      </div>
+
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<!-- Outlet order -->
+
+
+<div *ngIf="role=='outletuser'">
+   <router-outlet></router-outlet>
+</div>
+
+
+<!-- Outlet order -->
+
+<!-- ############################################ -->
+
+<!-- Admin order-->
+
+
+<div *ngIf="role=='admin'">
+    <p>Hey admin !</p>
+</div>
+
+
+<!-- Admin Order -->
+
+<!-- ############################################ -->
+
+<!-- Warehouse Order-->
+
+
+<div class="container-fluid" *ngIf="role=='warehouse'" >
+   
+    
+    
+                            <div class="bookmarkDiv">
+                                    <div class="" ><button class="btn btn-outline-inactive" [ngClass]="{bttnactive:isOrderReq()}" routerLink="/order">
+                                        Order
+                                    </button></div>
+                                  
+                                    <div class=""  ><button class="btn btn-outline-inactive" [ngClass]="{bttnactive:isReturnReq()}" routerLink="returnreq">Return</button></div>
+                                        
+                            </div>
+            
+            <!-- <div>
+                <button class="btn btn-primary">Order</button>
+                <button class="btn btn-primary">Return</button>
+            </div> -->
+            <div>
+                    <router-outlet ></router-outlet>
+            </div>
+
+       
+        
+
+
+   
+    
+    
+</div>
+
+
+<!-- Warehouse Order -->
+
+<!-- ############################################ -->
+
+<!--  driver order-->
+
+
+<div *ngIf="role=='driver'">
+    <p>Hey driver !</p>
+</div>
+
+
+<!-- driver order-->

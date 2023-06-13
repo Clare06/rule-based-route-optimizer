@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+    
+    <div class="col-md-3">
+    </div>
+    
+    <div class="col-md-6">
+    <div class="">
+      <ul class="nav nav-pills nav-fill order_return_tab">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/order">Order</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" style="background-color: #2caf94;" aria-current="page" routerLink="returnreq">Return</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+    <form [formGroup]="orderform" (ngSubmit)="onSubmit()">
+        <div class="mb-3" style="font-size: 32px;">Create a new return request</div>
+        <div class="form-group mb-3">
+          <label for="product">Product type:</label>
+          <select class="form-select" id="product" aria-label="Default select example" name="product_type" formControlName="product" required>
+                <option value="">-- Select a product --</option>
+                <option *ngFor="let product of products" [value]="product.pid">{{ product.productName }}</option>
+          </select>
+          <div *ngIf="orderform.get('product')?.invalid && (orderform.get('product')?.dirty || orderform.get('product')?.touched)">
+            <div class="help-block" *ngIf="orderform.get('product')?.errors?.['required']">Product type is required.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="qty">Quantity:</label>
+          <input type="number" class="form-control" id="qty" name="quantity" formControlName="quantity" required>
+          <div *ngIf="orderform.get('quantity')?.invalid && (orderform.get('quantity')?.dirty || orderform.get('quantity')?.touched)">
+            <div class="help-block" *ngIf="orderform.get('quantity')?.errors?.['required']">Quantity is required.</div>
+            <div class="help-block" *ngIf="orderform.get('quantity')?.errors?.['min']">Minimum quantity is 1</div>
+          </div>
+        </div>
+        <!-- <div class="d-flex justify-content-end">
+        <button (click)="addToCart()" type="button" class="btn btn-primary mb-3" [disabled]="!orderform.valid">Add to cart</button>
+        </div> -->
+
+        <div class="form-group">
+            <label for="rea">Reason:</label>
+            <textarea class="form-control" id="rea" name="reason" formControlName="reason"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="addr">Address:</label>
+          <textarea class="form-control" id="addr" name="address" formControlName="address" readonly></textarea>
+        </div>
+    
+        <div class="form-group mb-3">
+          <label for="time_window" class="form-label">Time window:</label>
+          <div class="d-flex justify-content-start" id="time_window">
+          <label for="appt">From: </label> <input type="time" id="appt" name="from_t" formControlName="from">
+          <label for="appt" style="margin-left: 50px;">To: </label> <input type="time" id="appt" name="to_t" formControlName="to">
+          </div>
+        </div>
+    
+        <div class="d-flex justify-content-end">
+        <button type="submit" class="btn" style="background-color: #2caf94; border-color: #2caf94; color: white;" [disabled]="!orderform.valid">Confirm</button>
+        </div>
+      </form>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+    </div>
+    
+    </div>
+</div>

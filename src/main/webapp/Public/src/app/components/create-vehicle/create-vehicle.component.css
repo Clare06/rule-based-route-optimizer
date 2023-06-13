@@ -1,0 +1,13 @@
+.form-control{
+    width: 700px;
+}
+.mar{
+    margin-top: 50px;
+}
+select {
+    appearance: auto;
+  }
+  .buttn{
+    background: #4DB094 !important;
+    color: rgb(244, 244, 244);
+}  

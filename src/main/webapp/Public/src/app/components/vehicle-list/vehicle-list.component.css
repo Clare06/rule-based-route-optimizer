@@ -1,0 +1,12 @@
+.mar{
+    margin-top: 50px;
+}
+.buttn{
+    background: #4DB094 !important;
+    color: rgb(244, 244, 244);
+}
+.buttn-danger{
+    background: #d10505 !important;
+    color: rgb(238, 237, 237);
+
+}

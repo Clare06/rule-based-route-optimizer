@@ -1,0 +1,50 @@
+
+<div class="container-fluid marg ">
+
+    <div class="row">
+
+        <div class="col col-6 ">
+            <h4>Returned Goods Current Month</h4>
+            <ngx-charts-advanced-pie-chart 
+                [results]="rgood"
+                [gradient]="false"
+                [customColors]="color" >
+            </ngx-charts-advanced-pie-chart>
+        </div>
+
+        <div class="col col-6">
+            <table class="table table-responsive-lg" >
+                <thead>
+                <tr>
+                    <th scope="col">Vehicle</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of vehicle;let i = index">
+                        <td>{{item.model}}({{item.vehicleNo}})</td>
+                        <td class="free" [ngClass]="{active:isActive(i)}" >{{item.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col col-12 marg1">
+            <ngx-charts-bar-vertical 
+            [view]="[1150,500]"
+            [results]="saleData"
+            [xAxisLabel]="'Product '"
+            [legendTitle]="'Product Sale Chart'"
+            [yAxisLabel]="'Available Quantity'"
+            [legend]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [customColors]="color"
+            [xAxis]="false"
+            [yAxis]="true"
+            [gradient]="false"
+            [barPadding]="0.5">
+        </ngx-charts-bar-vertical>
+        </div>
+    </div>
+
+</div>

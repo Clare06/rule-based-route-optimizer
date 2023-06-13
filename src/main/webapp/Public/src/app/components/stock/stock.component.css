@@ -1,0 +1,31 @@
+.bdr{
+    width: 70%;
+    border-radius: 6px;
+    
+}
+th{
+    padding: 10px;
+    text-align: center;
+    /* background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% ); */
+    background-color: #2caf95a4;
+    color: black;
+    font-size: large;
+}
+td{
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.461);
+    font-size: large;
+    color: #000000;
+}
+.ractive{
+    background-color: rgba(0, 4, 255, 0.597) !important;
+}
+
+tr{
+    cursor: pointer;
+}
+
+#add_product{
+    margin-left: 220px;
+}
