@@ -1,5 +1,7 @@
 package com.example.rulebasedrouteoptimization.model;
 
+import com.example.rulebasedrouteoptimization.otp.OtpTable;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -29,6 +31,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Warehousebackhauling> warehousebackhaulings;
+
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
+    private OtpTable otpTable;
 
     public User(String name, String email, String branch, String phone) {
         this.name = name;

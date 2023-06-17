@@ -4,6 +4,17 @@ public class NewPass {
     private String newPass;
     private String confPass;
     private String email;
+
+    private String otp;
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
     public String getNewPass() {
         return newPass;
     }

@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  button:boolean = false;
   //role: string | null = null;
   data: any;
   forPass: boolean =false;
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   userCred: any;
   otpmessage:string | null = null;
   email:any;
+  temOTP:string | null = null;
   constructor(private jwt:JwtService,private service:UserService, private router: Router,private http: HttpClient, private authService:AuthService){}
   ngOnInit(): void {
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     }
   }
   forgPass(user:any){
-    
+    this.button=!this.button;
       this.otpmessage=null;
     this.http.post(ENDPOINTS.RESETPASS, user, { observe: 'response' }).subscribe(
       (response: HttpResponse<any>) => {
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit {
           this.email=user.email;
           console.log('Success:', response ,this.email);
         } else {
+          this.button=!this.button;
           this.otpmessage="Invalid email address";
           
           console.log('Other status:', response.status);
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
       (error) => {
         // Handle error response or network error
         this.otpmessage="Invalid email address";
+        this.button=!this.button;
         console.error('Error occurred:', error);
       },
       () => {
@@ -65,12 +68,14 @@ export class LoginComponent implements OnInit {
   }
   otpSend(otp:any){
     this.otpmessage=null;
+    otp.email=this.email;
     this.http.post(ENDPOINTS.VERIFYOTP, otp, { observe: 'response' }).subscribe(
       (response: HttpResponse<any>) => {
         if (response.status === 200) {
           // HTTP 200 OK, handle the success response
           this.newPass=!this.newPass;
           this.otp=!this.otp;
+          this.temOTP=otp.otp;
           console.log('Success:', response);
         } else {
           this.otpmessage="Unmatched Otp";
@@ -91,6 +96,7 @@ export class LoginComponent implements OnInit {
   newPassSend(newPass:any){
     this.otpmessage=null;
     newPass.email=this.email;
+    newPass.otp=this.temOTP;
       console.log(newPass.email,this.email, newPass.confPass)
     this.http.post(ENDPOINTS.SETNEWPASS, newPass, { observe: 'response' }).subscribe(
       (response: HttpResponse<any>) => {

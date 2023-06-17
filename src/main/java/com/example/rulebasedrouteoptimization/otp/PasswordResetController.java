@@ -18,8 +18,11 @@ public class PasswordResetController {
 
     @Autowired
     private EmailService emailService;
-    private String otp;
-    private boolean verified = false;
+
+    @Autowired
+    private OtpTableService otpTableService;
+//    private String otp;
+//    private boolean verified = false;
     @PostMapping("/reset-password")
     public ResponseEntity<String> resetPassword(@RequestBody ForgotPasswordRequest request) {
         // Find the user by email
@@ -29,9 +32,9 @@ public class PasswordResetController {
             // User not found, return an error response
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
-
+        String otp=generateOTP();
         // Generate OTP (you can use any OTP generation mechanism)
-         this.otp = generateOTP();
+         otpTableService.setOtp(request,otp);
 
         // Send the password reset email with the OTP
         emailService.sendPasswordResetEmail(user.getEmail(), otp);
@@ -41,22 +44,21 @@ public class PasswordResetController {
     }
     @PostMapping("/verify-otp")
     public ResponseEntity<String> verifyOtp(@RequestBody Otp otp){
-        String message= "wrong";
-        if (otp.getOtp().equals(this.otp)){
-            this.verified=true;
-            message="verified";
-//            System.out.println(this.verified);
+            User usr=userService.findUserByEmail(otp.getEmail());
+        if (otpTableService.verifyOtp(usr.getId(),otp.getOtp())){
+
            return new ResponseEntity(HttpStatus.OK);
         }
-        System.out.println(this.verified);
         return new  ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("new-pass")
     public ResponseEntity<String> setNewPass(@RequestBody NewPass newPass){
-        if (newPass.getNewPass().equals(newPass.getConfPass()) && this.verified){
+            User usr=userService.findUserByEmail(newPass.getEmail());
+        if (newPass.getNewPass().equals(newPass.getConfPass()) && otpTableService.verifyOtp(usr.getId(),newPass.getOtp())){
           User user = userService.findUserByEmail(newPass.getEmail());
           userService.updatePassword(user,newPass.getNewPass());
+          otpTableService.delete(usr.getId(),newPass.getOtp());
             return new ResponseEntity(HttpStatus.OK);
         }
         return new  ResponseEntity(HttpStatus.BAD_REQUEST);
