@@ -74,7 +74,7 @@
               
               <a (click)="isForPass()" class="text-body">Back</a>
             </div>
-  
+            
             <div class="text-center text-lg-start mt-4 pt-2" >
               <button type="submit"  class="btn custom-button btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;" [disabled]="button" >Confirm</button>
@@ -115,7 +115,11 @@
               
               <!-- <a (click)="isForPass()" class="text-body">Back</a> -->
             </div>
-  
+            
+            <div class="warning">
+              Remaining Time : {{formatTime(remainingTime)}}
+            </div>
+
             <div class="text-center text-lg-start mt-4 pt-2" >
               <button type="submit" class="btn custom-button btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;" >Confirm</button>

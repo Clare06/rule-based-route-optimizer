@@ -23,4 +23,12 @@ public interface OtpTableRepository extends JpaRepository<OtpTable,Long>{
     @Transactional
     @Query("DELETE FROM OtpTable e WHERE e.createdTimestamp < :timestamp")
     void deleteByCreatedTimestampBefore(@Param("timestamp") LocalDateTime timestamp);
+
+    @Query("SELECT otp from OtpTable otp where otp.user.id=:uid")
+    Optional<OtpTable> presentData(@Param("uid") Integer uid);
+
+    @Modifying
+    @Transactional
+    @Query("DELETE from OtpTable  otp where otp.user.id=:uid")
+    void deltebyId(@Param("uid") Integer uid);
 }

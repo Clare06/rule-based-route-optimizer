@@ -6,3 +6,6 @@
 a:hover{
     cursor: pointer;
 }
+.warning{
+    color: #ef0909;
+}

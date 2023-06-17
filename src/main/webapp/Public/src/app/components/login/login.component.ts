@@ -24,11 +24,28 @@ export class LoginComponent implements OnInit {
   otpmessage:string | null = null;
   email:any;
   temOTP:string | null = null;
+  remainingTime:number =0;
   constructor(private jwt:JwtService,private service:UserService, private router: Router,private http: HttpClient, private authService:AuthService){}
   ngOnInit(): void {
 
 
   }
+  startTimer() {
+    const duration = 5 * 60 * 1000; // 5 minutes in milliseconds
+    const endTime = Date.now() + duration;
+
+    const timer = setInterval(() => {
+      const currentTime = Date.now();
+      this.remainingTime = endTime - currentTime;
+
+      if (this.remainingTime <= 0) {
+        clearInterval(timer);
+        window.location.reload();
+        
+      }
+    }, 1000); // Update the remaining time every second
+  }
+
   isForPass(){
     if(this.forPass){
       this.forPass=!this.forPass;
@@ -46,6 +63,7 @@ export class LoginComponent implements OnInit {
           this.otp=!this.otp;
           this.forPass=!this.forPass;
           this.email=user.email;
+          this.startTimer();
           console.log('Success:', response ,this.email);
         } else {
           this.button=!this.button;
@@ -154,5 +172,12 @@ export class LoginComponent implements OnInit {
       
 
  }
+
+ formatTime(milliseconds: number): string {
+  const minutes = Math.floor(milliseconds / 1000 / 60);
+  const seconds = Math.floor((milliseconds / 1000) % 60);
+  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
      
 }

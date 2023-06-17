@@ -35,9 +35,16 @@ public class OtpTableService {
     public void deleteOldData() {
         LocalDateTime fiveMinutesAgo = LocalDateTime.now().minusMinutes(5);
         otpTableRepository.deleteByCreatedTimestampBefore(fiveMinutesAgo);
-        System.out.println("i called");
     }
-    void  delete (Integer uid, String otp){
+    public void  delete (Integer uid, String otp){
         otpTableRepository.delete(uid,otp);
+    }
+    public boolean isPresent(String email){
+        User usr= userService.findUserByEmail(email);
+        Optional<OtpTable> otpTableOptional=otpTableRepository.presentData(usr.getId());
+        return otpTableOptional.isPresent();
+    }
+    public  void deleteByUid(Integer uid){
+        otpTableRepository.deltebyId(uid);
     }
 }

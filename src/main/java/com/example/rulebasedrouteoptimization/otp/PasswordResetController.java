@@ -29,14 +29,15 @@ public class PasswordResetController {
         User user = userService.findUserByEmail(request.getEmail());
 
         if (user == null) {
-            // User not found, return an error response
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
-        String otp=generateOTP();
-        // Generate OTP (you can use any OTP generation mechanism)
-         otpTableService.setOtp(request,otp);
+        if (otpTableService.isPresent(request.getEmail())){
 
-        // Send the password reset email with the OTP
+            otpTableService.deleteByUid(user.getId());
+        }
+        String otp=generateOTP();
+        otpTableService.setOtp(request,otp);
+
         emailService.sendPasswordResetEmail(user.getEmail(), otp);
         System.out.println("hey");
         // Return a success response
