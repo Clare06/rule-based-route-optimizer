@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-@RequestMapping
+@RequestMapping("/forgotpass")
 @RestController
 @CrossOrigin(allowedHeaders = "*" ,origins = "*")
 public class PasswordResetController {
@@ -46,6 +46,7 @@ public class PasswordResetController {
     @PostMapping("/verify-otp")
     public ResponseEntity<String> verifyOtp(@RequestBody Otp otp){
             User usr=userService.findUserByEmail(otp.getEmail());
+
         if (otpTableService.verifyOtp(usr.getId(),otp.getOtp())){
 
            return new ResponseEntity(HttpStatus.OK);
@@ -53,7 +54,7 @@ public class PasswordResetController {
         return new  ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("new-pass")
+    @PostMapping("/new-pass")
     public ResponseEntity<String> setNewPass(@RequestBody NewPass newPass){
             User usr=userService.findUserByEmail(newPass.getEmail());
         if (newPass.getNewPass().equals(newPass.getConfPass()) && otpTableService.verifyOtp(usr.getId(),newPass.getOtp())){

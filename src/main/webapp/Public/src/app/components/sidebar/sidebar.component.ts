@@ -55,6 +55,7 @@ ngOnInit(): void {
     localStorage.removeItem('loggedInUser');
     localStorage.removeItem('token');
     localStorage.removeItem('profImg');
+    localStorage.removeItem('role')
     // localStorage.removeItem('logghome');
     this.router.navigate(["/login"]).then(()=>{
       window.location.reload();

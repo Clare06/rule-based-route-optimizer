@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -45,6 +45,8 @@ import { DriverhomeComponent } from './components/driverhome/driverhome.componen
 import { UserComponent } from './components/user/user.component';
 import { OrderpopupComponent } from './components/orderpopup/orderpopup.component';
 import {MatCardModule} from '@angular/material/card';
+import { HttpInterceptorService } from './services/http-interceptor.service';
+import { HttpInterceptorRecieverService } from './services/http-interceptor-reciever.service';
 
 
 
@@ -85,7 +87,18 @@ import {MatCardModule} from '@angular/material/card';
 
     ],
     providers: [
-        MatSnackBarConfig
+        MatSnackBarConfig,
+        {
+          provide : HTTP_INTERCEPTORS,
+          useClass: HttpInterceptorService,
+          multi   : true,
+        },
+        {
+          provide : HTTP_INTERCEPTORS,
+          useClass: HttpInterceptorRecieverService,
+          multi   : true,
+        }
+
     ],
     bootstrap: [AppComponent],
     imports: [
