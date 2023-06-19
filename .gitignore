@@ -35,7 +35,7 @@ build/
 src/main/webapp/Public/.angular/cache
 
 node_modules/
-
+.git/
 
 .DS_Store
 .DS_Store

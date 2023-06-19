@@ -10,7 +10,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private com.example.rulebasedrouteoptimization.service.UserService usr;
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findUsersByEmail(email);
@@ -19,7 +20,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePassword(User user, String newPassword) {
         // Update the user's password
-        user.setPassword(newPassword);
+        String encodedPassword=usr.bcryptPassword(newPassword);
+        user.setPassword(encodedPassword);
         userRepository.save(user);
     }
 }

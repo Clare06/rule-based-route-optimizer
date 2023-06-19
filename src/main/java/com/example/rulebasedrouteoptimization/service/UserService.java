@@ -4,6 +4,7 @@ import com.example.rulebasedrouteoptimization.model.User;
 import com.example.rulebasedrouteoptimization.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,28 +31,10 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-//    public List<User> getUser() {
-//
-//        return userRepository.findAll();
-//
-//
-//    }
-
-
-//    public void addNewUser(User user) {
-//        Optional<User> studentOptional = userRepository.findUsersByEmail(user.getEmail());
-//        if (studentOptional.isPresent()) {
-//            throw new IllegalStateException("Email has taken");
-//        }
-//        userRepository.save(user);
-//
-//    }
     public  String saveProf(MultipartFile file, Integer id) throws IOException {
             Files.copy(file.getInputStream(),this.root.resolve(file.getOriginalFilename()));
             User use= userRepository.findById(id).orElse(null);
             Path oldDPname= Paths.get(use.getProfImgUrl()).getFileName();
-//            System.out.println(oldDPname);
             Path filePath=Paths.get(root+ "/"+ oldDPname);
             FileSystemUtils.deleteRecursively(filePath.toFile());
             use.setProfImgUrl("../../../assets/UserProfile/"+file.getOriginalFilename());
@@ -60,104 +44,72 @@ public class UserService {
             return user1.getProfImgUrl();
     }
     public Boolean authUser(User user) {
-        Optional<User> userOptional = userRepository.findUsersByEmailAndPassword(user.getEmail(), user.getPassword());
-
-//        if (userOptional.isPresent()) {
-
-            return userOptional.isPresent();
-
-
-//        } else {
-//
-//
-//            return 0;
-//        }
+            User usrDb=userRepository.findUsersByEmail(user.getEmail());
+            return this.bcryptMatch(user.getPassword(),usrDb.getPassword());
     }
-
     public Integer getId(User user) {
-        Optional<User> userIdOptional= userRepository.findUsersByEmailAndPassword(user.getEmail(), user.getPassword());
-        User userId=userIdOptional.get();
-
+        User userId=userRepository.findUsersByEmail(user.getEmail());
         return userId.getId();
     }
-
-   public String getRole(User user) {
-
-        Optional<User> userRoleOptional= userRepository.findUsersByEmailAndPassword(user.getEmail(), user.getPassword());
-
-        User userRole= userRoleOptional.get();
+    public String getRole(User user) {
+        User userRole=userRepository.findUsersByEmail(user.getEmail());
         return userRole.getRole();
    }
    public String getName(User user) {
-       Optional<User> userNameOptional= userRepository.findUsersByEmailAndPassword(user.getEmail(), user.getPassword());
-       User userName=userNameOptional.get();
-
+       User userName=userRepository.findUsersByEmail(user.getEmail());
        return userName.getName();
    }
    public String getProfImgUrl(User user) {
-       Optional<User> userImg=userRepository.findUsersByEmailAndPassword(user.getEmail(),user.getPassword());
-       User userImgUrl=userImg.get();
-
+       User userImgUrl=userRepository.findUsersByEmail(user.getEmail());
        return userImgUrl.getProfImgUrl();
    }
-    public Integer getUid(User user) {
-        Optional<User> userID=userRepository.findUsersByEmailAndPassword(user.getEmail(),user.getPassword());
-        User userId=userID.get();
-
+   public Integer getUid(User user) {
+        User userId=userRepository.findUsersByEmail(user.getEmail());
         return userId.getId();
     }
    public Optional<User> getUser(Integer uid) {
-
         return userRepository.findById(uid);
    }
 
-    public User upUser(Integer userId, User user) {
-//        if(userRepository.findById(userId).isPresent()){
+   public User upUser(Integer userId, User user) {
           User use= userRepository.findById(userId).orElse(null);
-//          System.out.println( "user password is: "+user.getPassword());
             use.setEmail(user.getEmail());
             use.setPhone(user.getPhone());
             use.setBranch(user.getBranch());
             if (user.getPassword()!="") {
-                use.setPassword(user.getPassword());
+                String encodedPassword= this.bcryptPassword(user.getPassword());
+                use.setPassword(encodedPassword);
             }
             use.setName(user.getName());
-           // System.out.println(use.toString());
             final User upUser= userRepository.save(use);
             return use;
-//        }else {
-//            return null;
-//        }
     }
-
     public String getBranch(User user) {
-
-        Optional<User> userBranchOptional= userRepository.findUsersByEmailAndPassword(user.getEmail(), user.getPassword());
-
-        User userBranch= userBranchOptional.get();
+        User userBranch=userRepository.findUsersByEmail(user.getEmail());
         return userBranch.getBranch();
     }
-
-//    public List<Optional<User>> getUserbyIDs(List<Integer> uids) {
-//        List<Optional<User>> users = new ArrayList<>();
-//        uids.forEach(uid->{
-//                    users.add(userRepository.findById(uid));
-//                }
-//        );
-//        return users;
-//    }
 
     public User getUserByUid(Integer uid) {
         return userRepository.findById(uid).orElse(null);
     }
-
     public User creatUser(User userIdAndPWCreateByAdmin) {
+        String encodedPassword=this.bcryptPassword(userIdAndPWCreateByAdmin.getPassword());
+        userIdAndPWCreateByAdmin.setPassword(encodedPassword);
         User userIdAndPWCreateByAdminEntity = new User();
         BeanUtils.copyProperties(userIdAndPWCreateByAdmin,userIdAndPWCreateByAdminEntity);
         userRepository.save(userIdAndPWCreateByAdminEntity);
         return userIdAndPWCreateByAdmin;
     }
-
+    public String bcryptPassword(String password){
+        int strength = 10; // work factor of bcrypt
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(strength, new SecureRandom());
+        String encodedPassword = bCryptPasswordEncoder.encode(password);
+        return encodedPassword;
+    }
+   public boolean bcryptMatch(String usrEntered, String dbPass) {
+       BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+       return  encoder.matches(usrEntered,dbPass);
+   }
     public List<User> findAll() {
         return userRepository.findAll();
     }

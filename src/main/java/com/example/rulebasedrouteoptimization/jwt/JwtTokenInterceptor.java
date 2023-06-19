@@ -22,15 +22,13 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // Get the JWT token from the request header
         String token = request.getHeader("Authorization");
-        System.out.println(token + " " + " recieved token");
+
         // Validate the token
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7); // Remove the "Bearer " prefix
             try {
                 //Verify the token and extract the claims
                 Claims claims = jwtUtil.extractAllClaims(token);
-
-                System.out.println(claims);
                 return true;
 //        }
             } catch (ExpiredJwtException ex) {

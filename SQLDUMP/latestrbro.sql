@@ -160,7 +160,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` (`next_val`) VALUES (41);
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES (43);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,13 +360,13 @@ CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `role` enum('admin','outletuser','driver','warehouse') NOT NULL,
   `prof_img_url` varchar(255) DEFAULT NULL,
   `branch` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -375,7 +375,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`, `prof_img_url`, `branch`, `phone`) VALUES (1,'Nisho','nisho@gmail.com','1234','outletuser','../../../assets/UserProfile/nish.jpeg','Gampaha','28954930'),(2,'Kumar Sangakkara','kumar@gmail.com','1234','admin','../../../assets/UserProfile/kumar.jpeg',NULL,NULL),(3,'Krishihan R.','krish@gmail.com','@1234Cn1','warehouse','../../../assets/UserProfile/10-profile-picture-ideas-to-make-you-stand-out.webp','Vavuniya','+94756789124'),(4,'Peter','peter@gmail.com','1234','driver','../../../assets/UserProfile/profile-icon-design-free-vector.webp',NULL,NULL),(5,'User','nishclar0@gmail.com','1234567','outletuser',NULL,NULL,NULL);
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`, `prof_img_url`, `branch`, `phone`) VALUES (1,'Nisho','nisho@gmail.com','$2a$10$npie/2/XTTTprQw.p.sife63r/NwIBckB.3gKOuj2nsM3UjFMcgeW','outletuser','../../../assets/UserProfile/nish.jpeg','Gampaha','28954930'),(2,'Kumar Sangakkara','kumar@gmail.com','$2a$10$npie/2/XTTTprQw.p.sife63r/NwIBckB.3gKOuj2nsM3UjFMcgeW','admin','../../../assets/UserProfile/kumar.jpeg',NULL,NULL),(3,'Krishihan R.','krish@gmail.com','$2a$10$PqmIXT.4QFpsTJbQpDTggOcJJNqqYausHoH7t8N.f9ihIVgFiS6ge','warehouse','../../../assets/UserProfile/10-profile-picture-ideas-to-make-you-stand-out.webp','Vavuniya','+94756789124'),(4,'Peter','peter@gmail.com','$2a$10$npie/2/XTTTprQw.p.sife63r/NwIBckB.3gKOuj2nsM3UjFMcgeW','driver','../../../assets/UserProfile/profile-icon-design-free-vector.webp',NULL,NULL),(5,'User','nishclar0@gmail.com','$2a$10$xSNkmoia1Ho7TRQkVKLSt.wUsXImpQwrYILujUS/Zp49UjCWR0cme','outletuser',NULL,NULL,NULL),(6,'Vithus','Vithus@gmail.com','$2a$10$MOK/lNfL/jJbCaezDbfCm.khsvJ7mSmjC5fvmo8s3ChzmEWbefezS','outletuser','','gamapaha','14253567'),(7,'Hey ','hey12@gmail.com','$2a$10$sMoh.5Kqz2KmyAsiyWnPhOx7k0e5DTRtA6KBtWMKw1LrAg5jcOSgq','outletuser','','ragama','14253567'),(8,'Check','check@gmail.com','$2a$10$lF7ys3zSjddvdFOh37mnqe/qUv3XgqxhRUcjnqRefl.lpJYHN8OT6','outletuser','','ragama','14253567');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,4 +461,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-19 16:26:33
+-- Dump completed on 2023-06-19 23:36:20
