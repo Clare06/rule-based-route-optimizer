@@ -15,6 +15,7 @@ export class UserComponent {
   message:String | null=null;
   create : Boolean = true;
   userObj: any;
+  button: boolean=true;
   constructor(private router:Router,private formBuilder: FormBuilder,private http:HttpClient) {
     
   }
@@ -44,6 +45,7 @@ export class UserComponent {
 
   }
   onSubmit(user:any) {
+    this.button=!this.button;
     this.http.post(ENDPOINTS.CREATEUSER, user, { observe: 'response' }).subscribe(
       (response: HttpResponse<any>) => {
         if (response.status === 200) {
@@ -51,14 +53,15 @@ export class UserComponent {
          this.refreshPage();
           
         } else {
-          this.message="Invalids";
-          
+          this.message="Email already used";
+          this.button=!this.button;
           console.log('Other status:', response.status);
         }
       },
       (error) => {
+        this.button=!this.button;
         // Handle error response or network error
-        this.message="Invalid";
+        this.message="Email already used";
         console.error('Error occurred:', error);
       },
       () => {

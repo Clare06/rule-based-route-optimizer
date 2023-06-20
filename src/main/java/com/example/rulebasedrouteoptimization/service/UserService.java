@@ -117,4 +117,8 @@ public class UserService {
     public void deletUser(Integer uid) {
         userRepository.deleteById(uid);
     }
+
+    public User findbyEmail(String email) {
+      return   userRepository.findUsersByEmail(email);
+    }
 }

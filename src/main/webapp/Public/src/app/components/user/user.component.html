@@ -80,8 +80,9 @@
   </div>
   
   
-    <button type="submit" class="btn btn-primary bton">Submit</button>
+    <button type="submit" class="btn btn-primary bton"[disabled]="!button">Submit</button>
   </form>
+  <p *ngIf="message!=''">{{message}}</p>
 </div>
 <div *ngIf="!create" class="top">
     <table class="table table-responsive-lg" >

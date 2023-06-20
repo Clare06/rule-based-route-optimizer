@@ -2,7 +2,7 @@ package com.example.rulebasedrouteoptimization.controller;
 
 import com.example.rulebasedrouteoptimization.jwt.JwtUtil;
 import com.example.rulebasedrouteoptimization.model.User;
-import com.example.rulebasedrouteoptimization.repository.OrderRepository;
+import com.example.rulebasedrouteoptimization.otp.EmailService;
 import com.example.rulebasedrouteoptimization.repository.UserRepository;
 import com.example.rulebasedrouteoptimization.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,6 @@ import java.util.*;
 @RequestMapping
 @CrossOrigin(allowedHeaders = "*" ,origins = "*")
 public class UserController {
-
     private final UserService userService;
     @Autowired
     private JwtUtil jwtUtil;
@@ -26,16 +25,20 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
     @Autowired
     private UserRepository userRepository;
-
-//    @Autowired
-//    public J(JwtUtil jwtUtil){this.jwtUtil=jwtUtil;}
-
+    @Autowired
+    private EmailService emailService;
     @PostMapping("/users")
-    public User creatUser(@RequestBody User userIdAndPWCreateByAdmin){
-        return userService.creatUser(userIdAndPWCreateByAdmin);
+    public ResponseEntity<String> creatUser(@RequestBody User userIdAndPWCreateByAdmin){
+        String password=userIdAndPWCreateByAdmin.getPassword();
+        Optional<User> usr= Optional.ofNullable(userService.findbyEmail(userIdAndPWCreateByAdmin.getEmail()));
+        if (usr.isPresent()){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        User create=userService.creatUser(userIdAndPWCreateByAdmin);
+        emailService.sendUserCredentialEmail(userIdAndPWCreateByAdmin,password);
+        return new ResponseEntity(HttpStatus.OK);
     }
     @GetMapping("getusers")
     public List<User> getuserList (){

@@ -39,8 +39,7 @@ public class PasswordResetController {
         otpTableService.setOtp(request,otp);
 
         emailService.sendPasswordResetEmail(user.getEmail(), otp);
-        System.out.println("hey");
-        // Return a success response
+
         return new ResponseEntity(HttpStatus.OK);
     }
     @PostMapping("/verify-otp")
