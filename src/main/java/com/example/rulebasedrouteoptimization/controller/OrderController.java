@@ -35,7 +35,10 @@ public class OrderController {
         this.orderService=orderService;
 
     }
-
+    @GetMapping("test")
+    public ResponseEntity<String> getString(){
+        return ResponseEntity.ok("hey I am here");
+    }
     @GetMapping
     public ResponseEntity<List<Order>> getAllOrders(){
         List<Order> orders= orderService.listAllOrders();

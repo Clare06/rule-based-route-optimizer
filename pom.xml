@@ -30,6 +30,36 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.graphhopper</groupId>-->
+<!--			<artifactId>graphhopper-web</artifactId>-->
+<!--			<version>6.2</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.graphhopper</groupId>-->
+<!--			<artifactId>jsprit-core</artifactId>-->
+<!--			<version>1.8</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.graphhopper</groupId>-->
+<!--			<artifactId>jsprit-analysis</artifactId>-->
+<!--			<version>1.8</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.graphhopper</groupId>-->
+<!--			<artifactId>jsprit-instances</artifactId>-->
+<!--			<version>1.8</version>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>org.mockito</groupId>-->
+<!--			<artifactId>mockito-all</artifactId>-->
+<!--			<version>1.9.5</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+
+<!--	-->
+<!--	-->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>

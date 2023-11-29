@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   remainingTime:number =0;
   constructor(private jwt:JwtService,private service:UserService, private router: Router,private http: HttpClient, private authService:AuthService){}
   ngOnInit(): void {
-
+      // this.http.get('http://localhost:8080/order/test').subscribe(data => console.log(data));
 
   }
   startTimer() {
